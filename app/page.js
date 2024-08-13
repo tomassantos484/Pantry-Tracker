@@ -26,6 +26,11 @@ export default function Home() {
   }
 
   const addItem = async (item) => {
+    if (!item || item.trim() === '') {
+      console.error('Item name cannot be empty');
+      return;
+    }
+
     const docRef = doc(collection(firestore, "inventory"), item);
     const docSnap = await getDoc(docRef);
 
